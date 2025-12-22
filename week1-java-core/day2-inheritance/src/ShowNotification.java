@@ -1,4 +1,4 @@
-public class Main {
+public class ShowNotification {
     public static void main(String[] args) {
         EmailNotification email = new EmailNotification();
         email.send("Welcome to Java Backend!");
