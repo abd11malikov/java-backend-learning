@@ -6,7 +6,6 @@ public class ShowNotification {
         NotificationSender notifier = new SmsNotification();
         notifier.send("Your OTP is 1234");
 
-        // We can easily change notifier from sms notification to email notification
         notifier = new EmailNotification();
         notifier.send("This is now an email!");
 

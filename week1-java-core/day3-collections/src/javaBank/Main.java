@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        Scanner scannerStr = new Scanner(System.in);
         BankService bank = new BankService();
 
         System.out.println("Welcome to JavaBank!");
@@ -20,8 +21,7 @@ public class Main {
 
             if (choice == 1) {
                 System.out.print("Enter your Name: ");
-                scanner.nextLine();
-                String name = scanner.nextLine();
+                String name = scannerStr.nextLine();
 
                 System.out.print("Choose a numeric User ID: ");
                 int newId = scanner.nextInt();
