@@ -1,13 +1,8 @@
-# IntelliJ specific
 .idea/
 *.iws
 *.iml
 *.ipr
-
-# Compiled code
 out/
 target/
 *.class
-
-# Mac system files (if you are on Mac)
 .DS_Store
