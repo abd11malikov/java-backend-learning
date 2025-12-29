@@ -1,0 +1,13 @@
+{
+  "id" : 1,
+  "name" : "Otabek",
+  "notifications": [
+    {
+      "notificationType": "Email",
+      "status": "SEND"
+    },{
+      "notificationType": "SMS",
+      "status": "FAILED"
+    }
+  ]
+}
