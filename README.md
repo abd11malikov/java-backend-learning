@@ -64,7 +64,7 @@ The repository is organized by weeks, with daily practice and small projects ins
 
 ## 🚀 Progress
 
-- [ ] Week 1: Java Core
+- [x] Week 1: Java Core
 - [ ] Week 2: Spring Boot
 - [ ] Week 3: Database & JPA
 - [ ] Week 4: Security & Final Project
