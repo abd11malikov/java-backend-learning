@@ -1,4 +1,4 @@
-package com.otabek.day14_real_api;
+package com.otabek.day15;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -6,10 +6,10 @@ import org.springframework.stereotype.Component;
 import java.util.Arrays;
 
 @Component
-public class DateSeeder implements CommandLineRunner {
+public class DataSeeder implements CommandLineRunner {
     private final UserRepository userRepository;
 
-    public DateSeeder(UserRepository userRepository) {
+    public DataSeeder(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
