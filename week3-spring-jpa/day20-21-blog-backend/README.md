@@ -29,3 +29,19 @@ The application handles complex relationships using Hibernate/JPA:
 
 ## 🚀 "Proof of Life"
 Includes a `DataSeeder` (`CommandLineRunner`) that creates an initial Admin User, creates Posts for them, and adds Comments, proving the Foreign Key web is functioning correctly on startup.
+
+## 🎮 API Documentation (Day 21 Update)
+
+I successfully implemented the REST layer with a dedicated Service architecture.
+
+### Key Endpoints
+| Feature | Method | URL | Description |
+| :--- | :--- | :--- | :--- |
+| **Blog Feed** | `GET` | `/api/posts` | Lists posts (simulates feed). |
+| **Single Post** | `GET` | `/api/posts/{id}` | Returns post + nested comments. |
+| **Comments** | `POST` | `/api/comments` | Adds a comment (via `CommentService`). |
+| **Admin** | `DELETE` | `/api/posts/{id}` | Cascades deletes (Removes post & its comments). |
+
+### Design Choice
+I separated `CommentService` from `PostService`.
+- **Reason:** To follow Single Responsibility Principle. Managing comments (CRUD) is distinct from managing Blog Posts.

@@ -1,6 +1,8 @@
 package com.otabek.day20.repository;
 
 import com.otabek.day20.entity.Post;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
