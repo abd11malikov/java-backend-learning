@@ -24,18 +24,8 @@ public class DataSeeder implements CommandLineRunner {
     private final PostRepository postRepository;
     private final CommentRepository commentRepository;
 
-    private final JwtUtil jwtUtil;
-
-
     @Override
     public void run(String... args) throws Exception {
-
-        String token = jwtUtil.generateToken("otabek_test");
-        System.out.println("🎟️ GENERATED TOKEN: " + token);
-
-        String user = jwtUtil.extractUsername(token);
-        System.out.println("👤 EXTRACTED USER: " + user);
-
         if (userRepository.count()==0){
             UserRequestDTO u1=new UserRequestDTO("otabek","otabek2006");
             UserRequestDTO u2=new UserRequestDTO("oybek","oybek2007");
