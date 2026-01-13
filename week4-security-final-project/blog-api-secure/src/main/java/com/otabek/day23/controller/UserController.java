@@ -6,6 +6,7 @@ import com.otabek.day23.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -32,7 +33,8 @@ public class UserController {
         return ResponseEntity.status(201).body(userService.createUser(userRequestDTO));
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<String> delete(@PathVariable Long id) {
         userService.deleteUser(id);
         return ResponseEntity.status(204).body("Successfully deleted!!!");

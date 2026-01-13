@@ -17,3 +17,18 @@ On **Day 23 (Jan 11)**, I implemented the "Login" flow. I transitioned from crea
 ## 🚀 Status
 - Login works! I can trade a password for a token.
 - Next Step: Use this token to access protected resources.
+
+# 👮 Day 25: Role-Based Access Control (RBAC)
+
+Implemented permissions to separate Admin capabilities from Standard Users.
+
+## 🛠️ Implementation
+1.  **Entity Update:** Added `private String role` to `User` entity.
+2.  **UserDetailsService:** Updated `loadUserByUsername` to convert the DB string `ROLE_ADMIN` into a Spring `GrantedAuthority`.
+3.  **Controller Security:**
+    - `@PreAuthorize("hasRole('ADMIN')")`: Protects the Delete endpoint.
+4.  **Token Enrichment:** Included `"role"` inside the JWT payload so frontends can conditionally render UI elements.
+
+## 🚧 Challenges Solved
+- **The Double Prefix Trap:** Spring's `.roles()` automatically adds `ROLE_`, causing mismatch with DB values `ROLE_ADMIN` -> `ROLE_ROLE_ADMIN`.
+- **Solution:** Switched to `.authorities()` which accepts the exact string literal from the database.

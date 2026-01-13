@@ -9,7 +9,7 @@
 		<relativePath/>
 	</parent>
 	<groupId>com.otabek</groupId>
-	<artifactId>day23-24-jjwt</artifactId>
+	<artifactId>blog-api-secure</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>day23-24-jjwt</name>
 	<description>Demo project for Spring Boot</description>

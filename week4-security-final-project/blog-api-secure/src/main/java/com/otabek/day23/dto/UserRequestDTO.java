@@ -17,5 +17,6 @@ public class UserRequestDTO {
     @NotBlank
     String password;
 
+    String role;
 
 }

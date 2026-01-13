@@ -27,9 +27,9 @@ public class DataSeeder implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         if (userRepository.count()==0){
-            UserRequestDTO u1=new UserRequestDTO("otabek","otabek2006");
-            UserRequestDTO u2=new UserRequestDTO("oybek","oybek2007");
-            UserRequestDTO u3=new UserRequestDTO("ozodbek","ozodbek2009");
+            UserRequestDTO u1=new UserRequestDTO("otabek","otabek2006","ADMIN");
+            UserRequestDTO u2=new UserRequestDTO("oybek","oybek2007","USER");
+            UserRequestDTO u3=new UserRequestDTO("ozodbek","ozodbek2009","USER");
 
             userService.createUser(u1);
             userService.createUser(u2);

@@ -38,6 +38,9 @@ public class UserService implements UserDetailsService {
         return mapperToResponseDTO(userRepository.findById(id).orElseThrow(()->new RuntimeException("User not found")));
     }
 
+    public UserResponseDTO getUserByUsername(String username){
+        return mapperToResponseDTO(userRepository.findByUsername(username).orElseThrow(()->new RuntimeException("User not found")));
+    }
     public void deleteUser(Long id){
         if(!userRepository.existsById(id)) {
             throw new RuntimeException("Cannot delete! User not found");
@@ -49,6 +52,7 @@ public class UserService implements UserDetailsService {
         UserResponseDTO dto = new UserResponseDTO();
         dto.setId(user.getId());
         dto.setUsername(user.getUsername());
+        dto.setRole(user.getRole());
         if (user.getPosts()!=null) {
             List<PostResponseDTO> postResponseDTOS = user.getPosts().stream().map(
                     post -> {
@@ -59,7 +63,6 @@ public class UserService implements UserDetailsService {
                         return postDto;
                     }
             ).toList();
-
             dto.setPosts(postResponseDTOS);
         }
         return dto;
@@ -68,6 +71,7 @@ public class UserService implements UserDetailsService {
     public User mapperToEntity(UserRequestDTO dto){
         User user = new User();
         user.setUsername(dto.getUsername());
+        user.setRole(dto.getRole());
         return user;
     }
 
@@ -79,7 +83,7 @@ public class UserService implements UserDetailsService {
         return org.springframework.security.core.userdetails.User
                 .withUsername(user.getUsername())
                 .password(user.getPassword())
-                .authorities("USER")
+                .roles(user.getRole())
                 .build();
     }
 }
