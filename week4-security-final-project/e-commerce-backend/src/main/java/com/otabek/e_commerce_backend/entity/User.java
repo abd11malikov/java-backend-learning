@@ -21,7 +21,7 @@ public class User extends BaseEntity{
 
     private String firstName;
 
-    private String lastname;
+    private String lastName;
 
     @Column(nullable = false,unique = true)
     private String phone;
