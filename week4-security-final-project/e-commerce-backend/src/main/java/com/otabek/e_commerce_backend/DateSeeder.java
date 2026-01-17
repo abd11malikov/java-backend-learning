@@ -51,6 +51,7 @@ public class DateSeeder implements CommandLineRunner {
             userService.create(userReq1);
             userService.create(userReq2);
             userService.create(userReq3);
+            userService.promoteToAdmin(1);
 
             ProductRequestDTO p1 = new ProductRequestDTO(
                     "MacBook Pro M3",
@@ -74,7 +75,6 @@ public class DateSeeder implements CommandLineRunner {
             Long prod1Id = productService.create(p1).getId();
             Long prod2Id = productService.create(p2).getId();
 
-            System.out.println("🛒 Simulating a Purchase...");
 
             OrderRequestDTO order = new OrderRequestDTO();
             order.setUserId(1);
@@ -90,8 +90,6 @@ public class DateSeeder implements CommandLineRunner {
             order.setOrderItems(List.of(item1, item2));
 
             orderService.placeOrder(userReq1.getEmail(), order);
-            System.out.println("✅ Data Seeding Completed! Store is open.");
-            System.out.println("xexe. Data seeded!!!");
         }
 
     }

@@ -21,9 +21,7 @@ public class ProductService {
     @Transactional
     public ProductResponseDTO create(ProductRequestDTO requestDTO) {
         Product product = mapToEntity(requestDTO);
-        System.out.println("creating...");
         Product savedProduct = productRepository.save(product);
-        System.out.println("CREATED");
         return mapToResponse(savedProduct);
     }
 

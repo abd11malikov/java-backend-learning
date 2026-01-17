@@ -69,6 +69,21 @@ public class OrderService {
         Order saved = orderRepository.save(order);
         return mapToResponse(saved);
     }
+    public List<OrderResponseDTO> getAll() {
+        return orderRepository.findAll().stream()
+                .map(this::mapToResponse)
+                .collect(Collectors.toList());
+    }
+
+
+    public List<OrderResponseDTO> getUserOrders(String userEmail) {
+        User user = userRepository.findByEmail(userEmail)
+                .orElseThrow(() -> new EntityNotFoundException("User not found"));
+
+        return orderRepository.findByUser(user).stream()
+                .map(this::mapToResponse)
+                .collect(Collectors.toList());
+    }
 
     private OrderResponseDTO mapToResponse(Order order) {
 

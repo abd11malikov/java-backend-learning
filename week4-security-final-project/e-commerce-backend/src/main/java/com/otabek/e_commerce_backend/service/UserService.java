@@ -8,6 +8,9 @@ import com.otabek.e_commerce_backend.repository.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +19,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class UserService {
+public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
@@ -99,6 +102,29 @@ public class UserService {
                 .phone(user.getPhone())
                 .email(user.getEmail())
                 .role(user.getRole().name())
+                .build();
+    }
+
+    public UserResponseDTO getUserByUsername(String username){
+        return mapToResponse(
+                userRepository.findByUsername(username).orElseThrow(()-> new EntityNotFoundException("User not found by this username: "+username))
+        );
+    }
+
+    public void promoteToAdmin(long id){
+        User user = userRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("User not found by this id: " + id));
+        user.setRole(Role.ADMIN);
+        userRepository.save(user);
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = userRepository.findByUsername(username).orElseThrow(() -> new RuntimeException("User not found: " + username));
+
+        return org.springframework.security.core.userdetails.User
+                .withUsername(user.getUsername())
+                .roles(user.getRole().name())
+                .password(user.getPassword())
                 .build();
     }
 }
